@@ -130,3 +130,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+
+# CHAT BOT OPEN MESSAGE
+HOME_KEYWORD = 'sante'
+
