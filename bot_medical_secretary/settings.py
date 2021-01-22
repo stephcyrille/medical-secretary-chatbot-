@@ -25,7 +25,7 @@ SECRET_KEY = '32m9$$cgto6i2d^=ip!b=d5!ksa7wdm5n)8jun!+k^1_y@aqu@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

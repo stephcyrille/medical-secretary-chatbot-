@@ -1,5 +1,5 @@
 import uuid
-
+from django.conf import  settings
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -70,7 +70,7 @@ class BotPortal(APIView):
         print (session.menu_step)
         print (session.menu_step_name)
 
-        if 'ishare' == body:
+        if settings.HOME_KEYWORD == body:
             session.status = 'close'
             session.save()
             response = {
