@@ -1,5 +1,5 @@
 import uuid
-from django.conf import  settings
+from django.conf import settings
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,6 +7,7 @@ from rest_framework_xml.renderers import XMLRenderer
 
 from .models import ChatBotRequest
 from .locale import translations
+from .steps.home import LowLevelMenu
 
 
 class MyXMLRenderer(XMLRenderer):
@@ -30,7 +31,7 @@ class BotPortal(APIView):
                 tab_uuid = _uuid.split('-')
                 transId = (tab_uuid[0] + tab_uuid[3]).upper()
                 req = ChatBotRequest(uuid=str(uuid.uuid4()), transId=transId, msisdn=from_number, status='open',
-                                     menu_step_name='sante')
+                                     menu_step_name='sante', level=1)
                 req.save()
                 return req
             else:
@@ -40,18 +41,6 @@ class BotPortal(APIView):
                                      menu_step_name='sante')
             session.save()
             return session
-
-    def response_text(self, body='', menu_step='', session_instance=None):
-        if menu_step != '':
-            session_instance.menu_step = menu_step
-            session_instance.save()
-        response = {
-            "Message": {
-                "Body": body
-            }
-        }
-        print(response)
-        return response
 
     def post(self, request):
         # In this place, we will create a session after checkin if session with my transId exist
@@ -64,29 +53,42 @@ class BotPortal(APIView):
         to_number = post_data['From']
         body = post_data['Body'].lower()
 
+        data = {
+            "from_number": from_number,
+            "to_number": to_number,
+            "body": body,
+        }
+
         # TODO We will find the ChatBotRequest with from number whose has end_session_time is greater than now time
         session = self.get_bot_request(from_number)
+        session_id = session.transId
 
-        print (session.menu_step)
-        print (session.menu_step_name)
+        print(session.menu_step)
+        print(session.menu_step_name)
+        level = session.level
+        lang = session.lang
 
-        if settings.HOME_KEYWORD == body:
-            session.status = 'close'
-            session.save()
-            response = {
-                "Message": {
-                    "Body": translations.base_menu['FR']["main menu"]
-                }
-            }
-            print(response)
-            return Response(response)
+        if 2 <= level < 10:
+            menu = LowLevelMenu(data, session_id, session, level, lang)
+            return menu.execute(request)
 
         else:
             session.status = 'close'
+            if body == settings.HOME_KEYWORD:
+                session.status = 'open'
+                session.level = 2
+                session.save()
+                response = {
+                    "Message": {
+                        "Body": translations.base_menu[lang]["main menu"]
+                    }
+                }
+                print(response)
+                return Response(response)
             session.save()
             response = {
                 "Message": {
-                    "Body": translations.chat_bot_global['FR']["chatbot greeting"]
+                    "Body": translations.chat_bot_global[lang]["chatbot greeting"]
                 }
             }
             print(response)

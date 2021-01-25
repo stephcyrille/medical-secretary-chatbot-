@@ -15,7 +15,7 @@ class ChatBotRequest(models.Model):
     change_credentials = models.BooleanField(default=False)
     is_agent = models.BooleanField(default=False)
     is_user = models.BooleanField(default=False)
-    lang = models.CharField(max_length=12, default='EN')
+    lang = models.CharField(max_length=12, default='FR')
     ussd_code = models.CharField(max_length=4, default='')
 
     status = models.CharField(max_length=50, default='')
@@ -35,10 +35,6 @@ class ChatBotRequest(models.Model):
     level = models.IntegerField(default=0)
     destinator_full_name = models.CharField(max_length=12, default='')
     # For tracking airtimes operations
-    airtime_transaction_code = models.CharField(max_length=50, default='')
-    airtime_response_code = models.CharField(max_length=50, default='')
-    airtime_balance = models.CharField(max_length=50, default='')
-    airtime_description = models.CharField(max_length=150, default='')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
