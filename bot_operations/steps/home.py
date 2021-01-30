@@ -24,7 +24,7 @@ class LowLevelMenu(Menu):
     def start_a_diagnostic(self, request):  # 5
         session = ChatBotRequest.objects.get(transId=self.session_id)
         menu_text = home[self.lang]["start a diagnostic"]
-        session.level = 31
+        session.level = 300
         session.save()
         return self.message_proceed(menu_text)
 

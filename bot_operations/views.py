@@ -9,6 +9,7 @@ from .models import ChatBotRequest
 from .locale import translations
 from .steps.appointment import Appointment
 from .steps.check_doctor_availability import CheckDoctorAvailability
+from .steps.diagnosis import Diagnosis
 from .steps.home import LowLevelMenu
 
 
@@ -80,6 +81,10 @@ class BotPortal(APIView):
 
         elif 200 <= level < 300:
             menu = CheckDoctorAvailability(data, session_id, session, level, lang)
+            return menu.execute(request)
+
+        elif 300 <= level < 400:
+            menu = Diagnosis(data, session_id, session, level, lang)
             return menu.execute(request)
 
         else:

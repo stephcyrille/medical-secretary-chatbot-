@@ -73,10 +73,11 @@ home = {
         "doctor availability": "Sélectionner le service dans lequel vous souhaitez vérifier la disponibilité"
                                "d'un médécin\n\n%(services)s"
                                "*0*.Revenir à l'acceuil" % {'services': services},
-        "start a diagnostic": "Commencer un diagnostic\n\n"
+        "start a diagnostic": "Entrer votre nom complet\n\n"
                               "*0*.Revenir à l'acceuil",
-        "check exams results": "Vérifier résultat examens\n\n"
-                               "*0*.Revenir à l'acceuil"
+        "check exams results": "Sélectionner le service dans lequel vous avez éffectué un examen\n\n"
+                               "%(services)s"
+                               "*0*.Revenir à l'acceuil" % {'services': services},
     },
     "EN": {
         "take an appointment": "Select a service in which you want to take an appointment\n\n"
@@ -89,7 +90,8 @@ home = {
 
 appointment = {
     "FR": {
-        "confirm an appointment": "Le rendez vous a été enregistré avec succès %(day)s à %(hour)s heure\n\n"
+        "confirm an appointment": "La prise de rendez vous a été enregistré avec succès pour "
+                                  "%(day)s à %(hour)s heure. Merci de nous faire confiance\n\n"
                                   "*0*.Revenir à l'acceuil",
     },
     "EN": {
@@ -102,7 +104,8 @@ check_doctor = {
         "select a doctor": "Sélectionner le nom du médécin\n\n"
                            "%(doctors)s"
                            "*0*.Revenir à l'acceuil" % {'doctors': doctors},
-        "confirm doctor availability": "Le  Dr. %(doctor)s est disponible le %(day)s à partir de %(hour)s heure.\n\n"
+        "confirm doctor availability": "Le  Dr. %(doctor)s est disponible le %(day)s à partir de %(hour)s heure."
+                                       "Merci de nous faire confiance\n\n"
                                        "*0*.Revenir à l'acceuil",
     },
     "EN": {
@@ -112,13 +115,49 @@ check_doctor = {
     }
 }
 
+diagnosis = {
+    "FR": {
+        "user age": "Entrer votre age\n\n"
+                    "*0*.Revenir à l'acceuil",
+        "user gender": 'Entrer votre sexe\n\n'
+                       '*0*.Revenir à l\'acceuil',
+        "medical background": "Préciser vos antécédants médicaux et allergies\n\n"
+                              "*0*.Revenir à l'acceuil",
+        "ache zone": "Préciser la zone du corp vous faisant soufrir\n\n"
+                            "*0*.Revenir à l'acceuil",
+        "symptoms": "Décrire les symptomes apparents\n\n"
+                            "*0*.Revenir à l'acceuil",
+        "end diagnosis": "Merci de nous avoir soumis toutes ces informations. Elle seront analysées par "
+                         "un médécin dans les plus brefs délais.\nPar ailleur, nous vous conseillons "
+                         "de prendre rendez-vous chez le médécin.\n\n"
+                         "*0*.Revenir à l'acceuil",
+    },
+    "EN": {
+        "user age": "Entrer votre age\n\n"
+                    "*0*.Revenir à l'acceuil",
+        "user gender": 'Entrer votre sexe\n\n'
+                       '*0*.Revenir à l\'acceuil',
+        "medical background": "Préciser vos antécédants médicaux et allergies\n\n"
+                              "*0*.Revenir à l'acceuil",
+        "ache zone": "Préciser la zone du corp vous faisant soufrir\n\n"
+                            "*0*.Revenir à l'acceuil",
+        "symptoms": "Décrire les symptomes apparents\n\n"
+                            "*0*.Revenir à l'acceuil",
+        "end diagnosis": "Merci de nous avoir soumis toutes ces informations."
+                         "Nous vous conseillons d'aller voir un médécin\n\n"
+                         "*0*.Revenir à l'acceuil",
+    }
+}
+
 errors = {
     "FR": {
         "invalid entry": "*La réponse saisie n'est pas valide*\n\n",
         "choice unavailable": "*Le nombre saisie ne correspond à aucun menu*\n\n",
+        "bad string": "*Bien vouloir saisir une chaine de caractère correcte*\n\n",
     },
     "EN": {
         "invalid entry": "Invalid response\n\n",
         "choice unavailable": "*Le nombre saisie ne correspond à aucun menu*\n\n",
+        "bad string": "*Bien vouloir saisir une chaine de caractère correcte*\n\n",
     }
 }

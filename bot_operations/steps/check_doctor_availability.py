@@ -140,7 +140,6 @@ class CheckDoctorAvailability(Menu):
             menu_text = errors[self.lang]["invalid entry"]
             menu_text += check_doctor[self.lang]["select a doctor"]
             return self.message_proceed(menu_text)
-        return 0
 
     def execute(self, request):
         menu = {
