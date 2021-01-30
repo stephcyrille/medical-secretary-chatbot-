@@ -56,7 +56,7 @@ class ExamsResult(Menu):
                   "*4*. Examen #REF2288Y1RO: Négatif\n"
         session = ChatBotRequest.objects.get(transId=self.session_id)
         if not len(self.loggedString) < 3:
-            session.level = 1
+            session.level = 5
             session.name = self.loggedString
             parameters = {
                 "name": self.loggedString,

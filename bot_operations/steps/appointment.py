@@ -92,7 +92,7 @@ class Appointment(Menu):
                     "hour": self.loggedString,
                 }
                 menu_text = appointment[self.lang]["confirm an appointment"] % parameters
-                session.level = 1
+                session.level = 5
                 session.save()
                 return self.message_proceed(menu_text)
             elif body == 0:

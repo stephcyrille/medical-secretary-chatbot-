@@ -120,7 +120,7 @@ class CheckDoctorAvailability(Menu):
                 if self.loggedString == '6': doctor = 'Paterson Réné';
                 if self.loggedString == '7': doctor = 'Ankel Henriette';
                 if self.loggedString == '8': doctor = 'Manuella Atangana';
-                session.level = 1
+                session.level = 5
                 session.save()
                 parameters = {
                     "doctor": doctor,

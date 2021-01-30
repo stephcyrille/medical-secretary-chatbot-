@@ -121,7 +121,7 @@ class Diagnosis(Menu):
         session = ChatBotRequest.objects.get(transId=self.session_id)
         if not len(self.loggedString) < 3:
             menu_text = diagnosis[self.lang]["end diagnosis"]
-            session.level = 1
+            session.level = 5
             session.symptoms = self.loggedString
             session.save()
             return self.message_proceed(menu_text)
