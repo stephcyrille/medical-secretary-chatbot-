@@ -2,6 +2,15 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 
+doctors = "*1*. Antoine Gabriel\n*2*. Cyrille Stephane\n*3*. Alima Christelle\n*4*. Anita Amougou\n" \
+          "*5*. Laetitia Manga\n*6*. Paterson Réné\n*7*. Ankel Henriette\n*8*. Manuella Atangana\n\n"
+
+services = "*1*. Médécine générale\n*2*. Immunologie\n*3*. Radiologie\n" \
+           "*4*. Churigie\n*5*. Neurologie\n*6*. Pneumologie\n*7*. Cardiologie\n" \
+           "*8*. Odontologie\n*9*. Dermatologie\n*10*. Traumatologie\n*11*. Médécine intern\n" \
+           "*12*. Endoctrinologie\n*13*. Anatomo-pathologie\n*14*. Hématologie\n" \
+           "*15*. Gastro-entérologie\n*16*. Urologie\n*17*. Pharmacie\n*18*. Maternité\n" \
+           "*19*. Pédiacrie\n*20*. Servcie des urgence\n*21*. Service des grands brulés\n\n"
 
 chat_bot_global = {
     "FR": {
@@ -13,9 +22,35 @@ chat_bot_global = {
     }
 }
 
+generic = {
+    "FR": {
+        "select date": "Sélectionner le jour du rendez-vous\n\n"
+                       "*1*. Lundi\n"
+                       "*2*. Mardi\n"
+                       "*3*. Mercredi\n"
+                       "*4*. Jeudi\n"
+                       "*5*. Vendredi\n"
+                       "*6*. Samedi\n\n"
+                       "*0*.Revenir à l'acceuil",
+        "take an appointment": "Saisir une heure entre 7h et 15h\n\n"
+                               "*0*.Revenir à l'acceuil",
+    },
+    "EN": {
+        "select date": "Select appointment date\n\n"
+                       "*1*. Monday\n"
+                       "*2*. Tuesday\n"
+                       "*3*. Wednesday\n"
+                       "*4*. Thursday\n"
+                       "*5*. Friday\n"
+                       "*6*. Saturday\n\n",
+        "take an appointment": "Write an hour, between 7am to 3pm\n\n"
+    }
+}
+
 base_menu = {
     "FR": {
-        "main menu": "Bienvenu chez nous, sélectionner un menu\n\n" 
+        "main menu": "Bienvenu au sécrétariat médical de l'Ecole National Superieur "
+                     "Polytechnique de Douala. Sélectionner un menu\n\n"
                      "*1*.Prendre un rendez-vous\n"
                      "*2*.Disponibilité d'un médécin \n"
                      "*3*.Commencer un diagnostique\n"
@@ -32,18 +67,58 @@ base_menu = {
 
 home = {
     "FR": {
-        "take an appointment": "Prendre un rendez-vous\n\n",
-        "doctor availability": "Disponibilité du médécin\n\n",
-        "start a diagnostic": "Commencer un diagnostic\n\n",
+        "take an appointment": "Sélectionner le service dans lequel vous souhaitez prendre rendez-vous\n\n"
+                               "%(services)s"
+                               "*0*.Revenir à l'acceuil" % {'services': services},
+        "doctor availability": "Sélectionner le service dans lequel vous souhaitez vérifier la disponibilité"
+                               "d'un médécin\n\n%(services)s"
+                               "*0*.Revenir à l'acceuil" % {'services': services},
+        "start a diagnostic": "Commencer un diagnostic\n\n"
+                              "*0*.Revenir à l'acceuil",
         "check exams results": "Vérifier résultat examens\n\n"
+                               "*0*.Revenir à l'acceuil"
     },
     "EN": {
-        "take an appointment": "Take an appointment\n\n",
+        "take an appointment": "Select a service in which you want to take an appointment\n\n"
+                               "%(services)s" % {'services': services},
         "doctor availability": "Doctor availability\n\n",
         "start a diagnostic": "Start a diagnostic now\n\n",
         "check exams results": "checks all exams results\n\n",
     },
 }
 
+appointment = {
+    "FR": {
+        "confirm an appointment": "Le rendez vous a été enregistré avec succès %(day)s à %(hour)s heure\n\n"
+                                  "*0*.Revenir à l'acceuil",
+    },
+    "EN": {
+        "confirm an appointment": "An appointment is taken %(day)s at %(hour)s \n\n",
+    }
+}
 
+check_doctor = {
+    "FR": {
+        "select a doctor": "Sélectionner le nom du médécin\n\n"
+                           "%(doctors)s"
+                           "*0*.Revenir à l'acceuil" % {'doctors': doctors},
+        "confirm doctor availability": "Le  Dr. %(doctor)s est disponible le %(day)s à partir de %(hour)s heure.\n\n"
+                                       "*0*.Revenir à l'acceuil",
+    },
+    "EN": {
+        "select a doctor": "Select the name of the doctor\n\n"
+                           "%(doctors)s" % {'doctors': doctors},
+        "confirm doctor availability": "Dr. %(doctor)s is available on %(day)s from %(hour)s o'oclock\n\n",
+    }
+}
 
+errors = {
+    "FR": {
+        "invalid entry": "*La réponse saisie n'est pas valide*\n\n",
+        "choice unavailable": "*Le nombre saisie ne correspond à aucun menu*\n\n",
+    },
+    "EN": {
+        "invalid entry": "Invalid response\n\n",
+        "choice unavailable": "*Le nombre saisie ne correspond à aucun menu*\n\n",
+    }
+}

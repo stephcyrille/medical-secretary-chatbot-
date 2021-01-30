@@ -7,6 +7,8 @@ from rest_framework_xml.renderers import XMLRenderer
 
 from .models import ChatBotRequest
 from .locale import translations
+from .steps.appointment import Appointment
+from .steps.check_doctor_availability import CheckDoctorAvailability
 from .steps.home import LowLevelMenu
 
 
@@ -70,6 +72,14 @@ class BotPortal(APIView):
 
         if 2 <= level < 10:
             menu = LowLevelMenu(data, session_id, session, level, lang)
+            return menu.execute(request)
+
+        elif 100 <= level < 200:
+            menu = Appointment(data, session_id, session, level, lang)
+            return menu.execute(request)
+
+        elif 200 <= level < 300:
+            menu = CheckDoctorAvailability(data, session_id, session, level, lang)
             return menu.execute(request)
 
         else:

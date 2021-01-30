@@ -10,14 +10,14 @@ class LowLevelMenu(Menu):
     def take_an_appointment(self, request):  # 1
         session = ChatBotRequest.objects.get(transId=self.session_id)
         menu_text = home[self.lang]["take an appointment"]
-        session.level = 11
+        session.level = 100
         session.save()
         return self.message_proceed(menu_text)
 
     def check_doctor_availability(self, request):  # 2
         session = ChatBotRequest.objects.get(transId=self.session_id)
         menu_text = home[self.lang]["doctor availability"]
-        session.level = 21
+        session.level = 200
         session.save()
         return self.message_proceed(menu_text)
 

@@ -38,6 +38,10 @@ class ChatBotRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now_add=True)
 
+    department = models.CharField(max_length=50, default='')
+    day = models.CharField(max_length=50, default='')
+    hour = models.CharField(max_length=50, default='')
+
     menu_step_name = models.CharField(max_length=50, default='')
     menu_step = models.CharField(max_length=50, default='')
     status = models.CharField(max_length=50, default='')
