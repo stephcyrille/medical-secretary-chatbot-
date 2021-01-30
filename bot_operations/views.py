@@ -10,6 +10,7 @@ from .locale import translations
 from .steps.appointment import Appointment
 from .steps.check_doctor_availability import CheckDoctorAvailability
 from .steps.diagnosis import Diagnosis
+from .steps.exams_result import ExamsResult
 from .steps.home import LowLevelMenu
 
 
@@ -34,14 +35,13 @@ class BotPortal(APIView):
                 tab_uuid = _uuid.split('-')
                 transId = (tab_uuid[0] + tab_uuid[3]).upper()
                 req = ChatBotRequest(uuid=str(uuid.uuid4()), transId=transId, msisdn=from_number, status='open',
-                                     menu_step_name='sante', level=1)
+                                     level=1)
                 req.save()
                 return req
             else:
                 return req_obj.first()
         except ChatBotRequest.DoesNotExist:
-            session = ChatBotRequest(uuid=str(uuid.uuid4()), transId=transId, msisdn=from_number, status='open',
-                                     menu_step_name='sante')
+            session = ChatBotRequest(uuid=str(uuid.uuid4()), transId=transId, msisdn=from_number, status='open')
             session.save()
             return session
 
@@ -66,8 +66,6 @@ class BotPortal(APIView):
         session = self.get_bot_request(from_number)
         session_id = session.transId
 
-        print(session.menu_step)
-        print(session.menu_step_name)
         level = session.level
         lang = session.lang
 
@@ -87,10 +85,12 @@ class BotPortal(APIView):
             menu = Diagnosis(data, session_id, session, level, lang)
             return menu.execute(request)
 
+        elif 400 <= level < 500:
+            menu = ExamsResult(data, session_id, session, level, lang)
+            return menu.execute(request)
+
         else:
-            session.status = 'close'
             if body == settings.HOME_KEYWORD:
-                session.status = 'open'
                 session.level = 2
                 session.save()
                 response = {

@@ -149,6 +149,23 @@ diagnosis = {
     }
 }
 
+exams_result = {
+    "FR": {
+        "user name": "Saisir votre nom complet\n\n"
+                     "*0*.Revenir à l'acceuil",
+        "exams result": "Résultats exames de %(name)s\n"
+                        "%(results)s\n\n"
+                        "*0*.Revenir à l'acceuil",
+    },
+    "EN": {
+        "user name": "Saisir votre nom complet\n\n"
+                     "*0*.Revenir à l'acceuil",
+        "exams result": "Résultats exames de %(name)s\n\n"
+                        "%(results)s\n\n"
+                        "*0*.Revenir à l'acceuil",
+    }
+}
+
 errors = {
     "FR": {
         "invalid entry": "*La réponse saisie n'est pas valide*\n\n",

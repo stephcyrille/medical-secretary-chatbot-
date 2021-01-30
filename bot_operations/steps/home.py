@@ -31,7 +31,7 @@ class LowLevelMenu(Menu):
     def check_exams_results(self, request):  # 6
         session = ChatBotRequest.objects.get(transId=self.session_id)
         menu_text = home[self.lang]["check exams results"]
-        session.level = 81
+        session.level = 400
         session.save()
         return self.message_proceed(menu_text)
 

@@ -26,8 +26,6 @@ class ChatBotRequest(models.Model):
     ache_zone = models.CharField(max_length=150, default='')
     symptoms = models.CharField(max_length=150, default='')
 
-    menu_step_name = models.CharField(max_length=50, default='')
-    menu_step = models.CharField(max_length=50, default='')
     status = models.CharField(max_length=50, default='')
     start_session_time = models.DateTimeField(blank=True, editable=False, default=timezone.now)
     end_session_time = models.DateTimeField(null=True, editable=False, blank=True)
