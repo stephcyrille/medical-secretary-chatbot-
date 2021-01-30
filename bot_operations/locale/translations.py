@@ -32,7 +32,7 @@ generic = {
                        "*5*. Vendredi\n"
                        "*6*. Samedi\n\n"
                        "*0*.Revenir à l'acceuil",
-        "take an appointment": "Saisir une heure entre 7h et 15h\n\n"
+        "take an appointment": "Saisir une heure entre 7h et 15h (Uniquemenent le chiffre sans le h)\n\n"
                                "*0*.Revenir à l'acceuil",
     },
     "EN": {

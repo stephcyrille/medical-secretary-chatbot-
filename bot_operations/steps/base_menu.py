@@ -53,7 +53,7 @@ class Menu(APIView):
         """serves the home menu"""
         session = ChatBotRequest.objects.get(transId=self.session_id)
         menu_text = base_menu[self.lang]["main menu"]
-        session.level = 1
+        session.level = 5
         session.save()
 
         return self.message_proceed(menu_text)
